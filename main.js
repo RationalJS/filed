@@ -163,8 +163,6 @@ function File (options) {
       if (self.buffers.length > 0) {
         stream.Stream.prototype.pipe.call(self, fs.createWriteStream(self.path))
       } else if (self.listeners('data').length > 0) {
-        fs.createReadStream(self.path).pipe(self.dest)
-      } else {
         fs.createReadStream(self.path).pipe(self)
       }
     }

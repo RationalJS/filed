@@ -207,4 +207,25 @@ function testhttp () {
 }
 testhttp()
 
+function testManualRead () {
+  var stream = filed(path.join(__dirname, 'fixture.txt'))
+
+  var expected =
+`abc
+xyz
+`
+  var body = Buffer.from('')
+
+  stream.on('data', function (chunk) { body = Buffer.concat([body, chunk]) })
+  stream.on('error', function (err) { throw err })
+  stream.on('end', function () {
+    var actual = body.toString('utf8')
+    if ( actual !== expected ) {
+      throw new Error(`Expected\n\n${actual}\n\nto equal\n\n${expected}`)
+    }
+    else console.log('Passed testManualRead')
+  })
+}
+testManualRead()
+
 process.on('exit', function () {console.log('All tests passed.')})
