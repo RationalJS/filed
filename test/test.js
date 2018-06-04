@@ -42,6 +42,7 @@ FileValidator.prototype.end = function () {
   assert.deepEqual(body, f)
 }
 FileValidator.prototype.on = function () {}
+FileValidator.prototype.once = function () {}
 FileValidator.prototype.removeListener = function () {}
 FileValidator.prototype.emit = function () {}
 
